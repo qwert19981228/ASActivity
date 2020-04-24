@@ -1,8 +1,11 @@
 package com.example.activitytest
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -20,8 +23,20 @@ class FirstActivity : AppCompatActivity() {
 //            Toast.makeText(this,"You clicked Button 1", Toast.LENGTH_SHORT).show()
             // 销毁一个Activity
 //            finish()
+//            val intent = Intent(this,SecondActivity::class.java)
+//            val intent = Intent("com.example.activitytest.ACTION_START")
+//            val intent = Intent(Intent.ACTION_VIEW)
+//            intent.addCategory("com.example.activitytest.MY_CATEGORY")
+//            intent.data = Uri.parse("https://www.baidu.com")
+//            val intent = Intent(Intent.ACTION_DIAL)
+//            intent.data = Uri.parse("tel:10086")
+//            val data = "Hello SecondActivity"
+//            val intent = Intent(this,SecondActivity::class.java)
+//            intent.putExtra("extra_data","data")
+//            startActivity(intent)
             val intent = Intent(this,SecondActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,1)
+
         }
     }
     // 添加菜单
@@ -36,5 +51,16 @@ class FirstActivity : AppCompatActivity() {
             R.id.remove_item -> Toast.makeText(this,"You clicked Remove",Toast.LENGTH_SHORT).show()
         }
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode){
+            1 -> if (resultCode == RESULT_OK){
+                val returnedData = data?.getStringExtra("data_return")
+                Log.d("FirstActivity","returned data is $returnedData")
+            }
+
+        }
     }
 }
