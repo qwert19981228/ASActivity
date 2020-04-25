@@ -37,8 +37,9 @@ class FirstActivity : BaseActivity() {
 //            startActivity(intent)
 //            val intent = Intent(this,SecondActivity::class.java)
 //            startActivityForResult(intent,1)
-            val intent = Intent(this,SecondActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this,SecondActivity::class.java)
+//            startActivity(intent)
+        SecondActivity.actionStart(this,"data1","data2")
         }
     }
     // 添加菜单
