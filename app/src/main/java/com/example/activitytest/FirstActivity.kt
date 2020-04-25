@@ -12,10 +12,11 @@ import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.first_layout.*
 
-class FirstActivity : AppCompatActivity() {
+class FirstActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("FirstActivity","Task id is $taskId")
         setContentView(R.layout.first_layout)
         // 为按钮添加点击事件
         button1.setOnClickListener {
@@ -34,9 +35,10 @@ class FirstActivity : AppCompatActivity() {
 //            val intent = Intent(this,SecondActivity::class.java)
 //            intent.putExtra("extra_data","data")
 //            startActivity(intent)
+//            val intent = Intent(this,SecondActivity::class.java)
+//            startActivityForResult(intent,1)
             val intent = Intent(this,SecondActivity::class.java)
-            startActivityForResult(intent,1)
-
+            startActivity(intent)
         }
     }
     // 添加菜单
@@ -63,4 +65,11 @@ class FirstActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("FirstActivity","onRestart")
+    }
+
 }
+
